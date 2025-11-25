@@ -47,7 +47,8 @@ ul { list-style: none; }
 
 /* 네비게이션 */
 header {
-    background: var(--white);
+    /* 로고 이미지의 배경색과 동일하게 맞춥니다 */
+    background-color: #fdfdfd; /* 기존 #fff 에서 변경 */
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     position: fixed;
     width: 100%;
@@ -62,10 +63,17 @@ header .container {
     height: 70px;
 }
 
+/* 기존의 폰트 관련 설정은 지우거나 덮어씌웁니다 */
 .logo a {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    display: flex; /* 로고를 수직 중앙에 정렬하기 위함 */
+    align-items: center;
+}
+
+/* 로고 이미지 스타일 */
+.logo-img {
+    height: 50px;  /* 헤더 높이가 70px이므로 40~50px 정도가 적당합니다 */
+    width: auto;   /* 높이에 맞춰 비율 자동 유지 */
+    object-fit: contain; /* 이미지가 찌그러지지 않게 함 */
 }
 
 .nav-links { display: flex; }
@@ -83,22 +91,69 @@ header .container {
     margin: 5px; transition: all 0.3s ease;
 }
 
-/* 히어로 섹션 */
-.hero {
+/* === 1. 메인 슬라이더 스타일 === */
+.hero-slider {
+    position: relative;
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--white);
-    margin-top: 70px; /* 헤더 높이만큼 */
+    overflow: hidden; /* 넘치는 이미지 숨김 */
+    margin-top: 70px;
 }
 
-.hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
-.hero p { font-size: 1.2rem; margin-bottom: 30px; }
+.slider-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex; /* 가로로 배치 */
+    transition: transform 1s ease-in-out; /* 부드러운 슬라이드 효과 */
+}
+
+.slide {
+    min-width: 100%; /* 화면 꽉 차게 */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /* 이미지 어둡게 처리 (글씨 잘 보이게) */
+    filter: brightness(0.5); 
+}
+
+/* 텍스트 오버레이 (슬라이드 위에 둥둥 떠있음) */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--white);
+    z-index: 10; /* 슬라이드보다 위에 위치 */
+    width: 90%;
+}
+
+.hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+.hero-content p { font-size: 1.2rem; margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+
+
+/* === 2. News 섹션 스타일 === */
+.news-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+.news-card:hover { transform: translateY(-5px); }
+
+.news-img {
+    width: 100%;
+    height: 200px;
+    background-color: #eee;
+    background-size: cover;
+    background-position: center;
+}
+
+.news-content { padding: 20px; }
+.news-date { font-size: 0.85rem; color: var(--accent-color); font-weight: bold; }
+.news-content h3 { margin: 10px 0; font-size: 1.2rem; color: var(--primary-color); }
+.news-content p { font-size: 0.95rem; color: var(--text-light); line-height: 1.5; }
 .btn {
     padding: 10px 30px;
     background: var(--accent-color);
