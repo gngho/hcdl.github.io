@@ -47,7 +47,8 @@ ul { list-style: none; }
 
 /* 네비게이션 */
 header {
-    background: var(--white);
+    /* 로고 이미지의 배경색과 동일하게 맞춥니다 */
+    background-color: #fafafa; /* 기존 #fff 에서 변경 */
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     position: fixed;
     width: 100%;
