@@ -62,10 +62,17 @@ header .container {
     height: 70px;
 }
 
+/* 기존의 폰트 관련 설정은 지우거나 덮어씌웁니다 */
 .logo a {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    display: flex; /* 로고를 수직 중앙에 정렬하기 위함 */
+    align-items: center;
+}
+
+/* 로고 이미지 스타일 */
+.logo-img {
+    height: 50px;  /* 헤더 높이가 70px이므로 40~50px 정도가 적당합니다 */
+    width: auto;   /* 높이에 맞춰 비율 자동 유지 */
+    object-fit: contain; /* 이미지가 찌그러지지 않게 함 */
 }
 
 .nav-links { display: flex; }
